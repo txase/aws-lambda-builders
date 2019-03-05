@@ -113,7 +113,10 @@ class NodejsNpmInstallAction(BaseAction):
             )
 
         except NpmExecutionError as ex:
-            raise ActionFailedError(str(ex))
+            try:
+                raise ActionFailedError(str(ex))
+            except UnicodeEncodeError:
+                raise ActionFailedError(unicode(ex))
 
 class NodejsNpmrcCopyAction(BaseAction):
 
