@@ -14,7 +14,7 @@ class NpmExecutionError(Exception):
     It will pass on the standard error output from the NPM console.
     """
 
-    MESSAGE = "NPM Failed: {message}"
+    MESSAGE = u"NPM Failed: {message}"
 
     def __init__(self, **kwargs):
         Exception.__init__(self, self.MESSAGE.format(**kwargs))
