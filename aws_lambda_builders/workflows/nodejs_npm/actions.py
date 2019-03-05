@@ -67,7 +67,10 @@ class NodejsNpmPackAction(BaseAction):
             self.osutils.extract_tarfile(tarfile_path, self.artifacts_dir)
 
         except NpmExecutionError as ex:
-            raise ActionFailedError(str(ex))
+            try:
+                raise ActionFailedError(str(ex))
+            except UnicodeEncodeError:
+                raise ActionFailedError(unicode(ex))
 
 
 class NodejsNpmInstallAction(BaseAction):
